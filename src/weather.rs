@@ -20,7 +20,7 @@ pub async fn check_weather(
 }
 
 pub fn himawari_se3_format() -> String {
-    let now = chrono::Utc::now() - chrono::Duration::minutes(10);
+    let now = chrono::Utc::now() - chrono::Duration::minutes(20); // the image isn't instantly downloaded from the satellite
     let minutes = now.minute();
     let minutes_rounded = minutes - (minutes % 10);
     format!(
