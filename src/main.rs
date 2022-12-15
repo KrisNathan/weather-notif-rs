@@ -21,7 +21,7 @@ async fn get_weather(data: web::Data<AppState>, path: web::Path<(u32, u32)>) -> 
                 y
             );
             let mut wr = data.was_raining.lock().unwrap();
-            if !(*wr) {
+            if (!*wr) && r {
                 match data
                     .reqwest_client
                     .post(format!(
