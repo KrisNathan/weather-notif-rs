@@ -1,7 +1,7 @@
 Server Usage:
 
 ```sh
-TOPIC=YOURNTFYTOPIC cargo run --release
+ADDRESS=127.0.0.1 PORT=8080 TOPIC=YOURNTFYTOPIC cargo run --release
 ```
 
 Call Job:

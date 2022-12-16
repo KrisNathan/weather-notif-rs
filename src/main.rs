@@ -73,7 +73,10 @@ async fn main() -> std::io::Result<()> {
             .service(echo)
             .service(get_weather)
     })
-    .bind(("127.0.0.1", 8080))?
+    .bind((
+        std::env::var("ADDRESS").unwrap(), // obviously for this we want to panic
+        std::env::var("PORT").unwrap().parse::<u16>().unwrap(),
+    ))?
     .run()
     .await
 }
