@@ -67,7 +67,7 @@ async fn main() -> std::io::Result<()> {
         reqwest_client: reqwest::Client::new(),
         was_raining: Mutex::new(false),
     });
-    HttpServer::new(move || {
+    let server = HttpServer::new(move || {
         App::new()
             .app_data(s.clone())
             .service(echo)
@@ -77,6 +77,17 @@ async fn main() -> std::io::Result<()> {
         std::env::var("ADDRESS").unwrap(), // obviously for this we want to panic
         std::env::var("PORT").unwrap().parse::<u16>().unwrap(),
     ))?
-    .run()
-    .await
+    .run();
+
+    tokio::join!(server, on_start());
+
+    Ok(())
+}
+
+async fn on_start() {
+    println!(
+        "Started weather-notif-rs on: {}:{}",
+        std::env::var("ADDRESS").unwrap(),
+        std::env::var("PORT").unwrap()
+    );
 }
