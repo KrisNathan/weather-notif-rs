@@ -79,7 +79,7 @@ async fn main() -> std::io::Result<()> {
     ))?
     .run();
 
-    tokio::join!(server, on_start());
+    tokio::join!(server, on_start()).0?;
 
     Ok(())
 }
