@@ -5,11 +5,20 @@ edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[[bin]]
+name = "cron"
+path = "src/cron/main.rs"
+
+[[bin]]
+name = "server"
+path = "src/server/main.rs"
+
 [dependencies]
 actix-web = "4.2.1"
 chrono = "0.4.23"
 image = "0.24.5"
 reqwest = "0.11.13"
 serde = "1.0.150"
-tokio = {version = "1.23.0", features=["macros"]}
+tokio = {version = "1.23.0", features=["macros", "rt", "rt-multi-thread"]}
 tokio-test = "0.4.2"
+cronjob = "0.4.17"
